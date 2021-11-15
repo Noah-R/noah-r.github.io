@@ -1,3 +1,7 @@
+This website is adapted from a template, Dimension by HTML5 UP, which is available at https://html5up.net/dimension, and licensed under the CCA 3.0 license, included below
+
+---
+
 Creative Commons Attribution 3.0 Unported
 http://creativecommons.org/licenses/by/3.0/
 
