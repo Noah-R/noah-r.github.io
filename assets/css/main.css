@@ -1112,6 +1112,7 @@ input, select, textarea {
 		-ms-transform: scale(1.0);
 		transform: scale(1.0);
 		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;/*changed: added this*/
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -1271,16 +1272,16 @@ input, select, textarea {
 			margin-top: 3.5rem;
 		}
 
-			#header > *:before {
+			/*#header > *:before {
 				content: '';
 				display: block;
 				position: absolute;
 				top: calc(-3.5rem - 1px);
 				left: calc(50% - 1px);
-				width: 0px;/*changed: 1px*/
+				width: 1px;
 				height: calc(3.5rem + 1px);
 				background: #ffffff;
-			}
+			}*//*changed:commented this*/
 
 		#header > :first-child {
 			margin-top: 0;
@@ -1376,18 +1377,18 @@ input, select, textarea {
 						background-color: rgba(255, 255, 255, 0.175);
 					}
 
-		#header nav.use-middle:after {
+		/*#header nav.use-middle:after {
 			content: '';
 			display: block;
 			position: absolute;
 			top: 0;
 			left: calc(50% - 1px);
-			width: 0px;/*changed: 1px*/
+			width: 1px;
 			height: 100%;
 			background: #ffffff;
 		}
 
-		/*#header nav.use-middle ul li.is-middle {
+		#header nav.use-middle ul li.is-middle {
 			border-left: 0;
 		}*//*changed: commented this*/
 
@@ -1659,3 +1660,9 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
+
+/*changed: added all code below*/
+.easteregg{
+	text-decoration: none;
+	border:0;
+}
