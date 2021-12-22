@@ -1,0 +1,3 @@
+Build out the projects article
+Add something else to the nav bar?
+Back button to projects page from individual projects

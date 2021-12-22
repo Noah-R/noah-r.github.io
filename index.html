@@ -23,16 +23,24 @@
 						<nav>
 							<ul>
 								<li><a href="#hello">Intro</a></li>
-								<li><a href="#ert">Emergency Response Times</a></li>
-								<li><a href="#mulligandecider">Mulligan Decider</a></li>
-								<li><a href="#taxidata">Taxi Data</a></li>
+								<li><a href="#projects">Projects</a></li>
 								<li><a href="#contact">Contact</a></li>
 							</ul>
 						</nav>
 					</header>
 
 					<div id="main">
-						
+							<article id="projects">	
+							<h2 class="major">Projects</h2>
+								<nav>
+									<ul>
+										<li><a href="#ert">Emergency Response Times</a></li>
+										<li><a href="#mulligandecider">Mulligan Decider</a></li>
+										<li><a href="#taxidata">Taxi Data</a></li>
+									</ul>
+								</nav>
+							</article>
+							
 							<article id="hello">
 								<h2 class="major">Hello</h2>
 								<p>Hello, I'm Noah. I'm a lifelong New Yorker, longtime programmer, and recent college graduate. Here's where you'll find a collection of personal projects I've been working on, photos I've taken, and other neat stuff, so have a look around.
@@ -43,23 +51,29 @@
 							<article id="ert">
 								<h2 class="major">Emergency Response Times</h2>
 								<span class="image main"><img src="images\EMSResponseTimes.png" alt=""></span>
-								<p>Emergency Response Times is a series of scripts which map the average response time for emergency services in each ZIP code in New York City.
+								<p>Emergency Response Times is a series of scripts which map the average response time for emergency services in each ZIP code in New York City. The data is from NYC Open Data, queried using Socrata, and the map is generated using Folium in Python.
 								<br>
 								<br><a href="works/emsmap.html">EMS Response Times</a>	
 								<br><a href="works/firemap.html">Fire Response Times</a>	
-								<br><br><a href="https://github.com/Noah-R/Emergency-Response-Times">Source code on GitHub</a></p>
+								<br><br><a href="https://github.com/Noah-R/Emergency-Response-Times">Source code on GitHub</a>
+								<br><br><a href="#projects">Other Projects</a></p>
 							</article>
 
 							<article id="mulligandecider">
 								<h2 class="major">Mulligan Decider</h2>
 								<span class="image main"><img src="images/MulliganDecider.png" alt=""></span>
-								<p>Mulligan Decider is a machine learning system for <a href="https://en.wikipedia.org/wiki/Magic:_The_Gathering">Magic: the Gathering</a>. Using TensorFlow in Python, it analyzes thousands of recorded games from <a href="https://www.17lands.com/">17lands</a>, builds a neural network to predict the probability of winning with a given opening hand, and advises the user on how to mulligan at the start of the game. <br><br><a href="https://github.com/Noah-R/Mulligan-Decider">Source code on GitHub</a></p>
+								<p>Mulligan Decider is a machine learning system for <a href="https://en.wikipedia.org/wiki/Magic:_The_Gathering">Magic: the Gathering</a>. Using TensorFlow/Keras in Python, it analyzes thousands of recorded games from <a href="https://www.17lands.com/">17lands</a>, builds a neural network to predict the probability of winning with a given opening hand, and advises the user on how to mulligan at the start of the game. <br><br><a href="https://github.com/Noah-R/Mulligan-Decider">Source code on GitHub</a>
+								<br><br><a href="#projects">Other Projects</a></p>
 							</article>
 
 							<article id="taxidata">
 								<h2 class="major">Taxi Data</h2>
 								<span class="image main"><img src="images/DistanceGraph.png" alt=""><img src="images/FareGraph.png" alt=""></span>
-								<p>Taxi Data is a collection of scripts which analyze <a href="https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page">New York City's publicly available taxi trip data</a>. This is just an absolute plum of a dataset, it provides a myriad of information about every single ride that has been taken in a New York City taxicab since 2009. There's so much to learn here, I've hardly even scratched the surface. <br><br><a href="https://github.com/Noah-R/taxidata">Source code on GitHub</a></p>
+								<p>Taxi Data is a collection of scripts which analyze <a href="https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page">New York City's publicly available taxi trip data</a>. It contains analyses of the number of trips to/from/between each neighborhood, the distribution of trip fares/distances, and the change in trip frequency over the course of the day. Graphs are generated using Matplotlib in Python.
+								<br><br>
+								I also joined the trip data with NWS weather data and Census demographic data, to try to create a model to predict fares at the start of the trip, but none of those features ended up being all that predictive.
+								<br><br><a href="https://github.com/Noah-R/taxidata">Source code on GitHub</a>
+								<br><br><a href="#projects">Other Projects</a></p>
 							</article>
 
 							<article id="contact">
