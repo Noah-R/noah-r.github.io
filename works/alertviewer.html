@@ -6,7 +6,7 @@
     </head>
     <body>
         <h2>Service Alerts from 15 July 2022</h2>
-        <p>Line:    </p>
+        <p>Line:</p>
         <form name="lines">
             <input type="checkbox" name="line" value="1">1</input>
             <input type="checkbox" name="line" value="2">2</input>
@@ -31,11 +31,12 @@
             <input type="checkbox" name="line" value="G">G</input>
             <input type="checkbox" name="line" value="L">L</input>
             <input type="checkbox" name="line" value="GS">S (42nd Street)</input>
-            <input type="checkbox" name="line" value="FS">S (Franklin)</input>
-            <input type="checkbox" name="line" value="H">S (Rockaway)</input>
-            <input type="checkbox" name="line" value="SI">SI</input>
+            <input type="checkbox" name="line" value="FS">S (Franklin Av)</input>
+            <input type="checkbox" name="line" value="H">S (Rockaway Beach)</input>
+            <input type="checkbox" name="line" value="SI">SIR</input>
           </form>
           <input type="checkbox" onClick="setAll(this)"> Toggle All</input>
+          <br>
           <p>Start Time:</p>
           <select name="starthour" id="starthour">
               <option value="0">0</option>
@@ -77,6 +78,7 @@
               <option value="50">50</option>
               <option value="55">55</option>
           </select>
+        <br>
         <p>End Time:</p>
         <select name="endhour" id="endhour">
             <option value="0">0</option>

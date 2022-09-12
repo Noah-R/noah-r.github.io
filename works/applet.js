@@ -6,7 +6,7 @@ function setAll(state){
 }
 function timestampToTime(stamp){
   if(stamp==0){
-    return "None";
+    return "Unknown";
   }
   var date = new Date(stamp * 1000);
   var hours = date.getHours();
@@ -27917,7 +27917,7 @@ for(var i = 0; i<data.length; i+=1){
   }
 }
 
-var text = "<table border='1'><tr><td>time</td><td>start</td><td>end</td><td>route</td><td>header</td><td>description</td></tr>";
+var text = "<p>"+newdata.length+" results</p><br><table border='1'><tr><td>time archived</td><td>start time</td><td>end time</td><td>route</td><td>header</td><td>description</td></tr>";
 for (let x in newdata) {
   text += "<tr><td>" + timestampToTime(newdata[x].time) + "</td><td>" + timestampToTime(newdata[x].start) + "</td><td>" + timestampToTime(newdata[x].end) + "</td><td>" + newdata[x].route + "</td><td>" + newdata[x].header + "</td><td>" + newdata[x].description + "</td></tr>";
 }
