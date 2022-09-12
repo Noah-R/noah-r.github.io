@@ -1,0 +1,124 @@
+<html>
+    <head>
+    <title>MTA Service Alert Viewer</title>
+    <script src="applet.js"></script>
+    </head>
+    <body>
+        <p>Line:    </p>
+        <form name="lines">
+            <input type="checkbox" name="line" value="1">1</input>
+            <input type="checkbox" name="line" value="2">2</input>
+            <input type="checkbox" name="line" value="3">3</input>
+            <input type="checkbox" name="line" value="4">4</input>
+            <input type="checkbox" name="line" value="5">5</input>
+            <input type="checkbox" name="line" value="6">6</input>
+            <input type="checkbox" name="line" value="7">7</input>
+            <input type="checkbox" name="line" value="A">A</input>
+            <input type="checkbox" name="line" value="C">C</input>
+            <input type="checkbox" name="line" value="E">E</input>
+            <input type="checkbox" name="line" value="B">B</input>
+            <input type="checkbox" name="line" value="D">D</input>
+            <input type="checkbox" name="line" value="F">F</input>
+            <input type="checkbox" name="line" value="M">M</input>
+            <input type="checkbox" name="line" value="N">N</input>
+            <input type="checkbox" name="line" value="Q">Q</input>
+            <input type="checkbox" name="line" value="R">R</input>
+            <input type="checkbox" name="line" value="W">W</input>
+            <input type="checkbox" name="line" value="J">J</input>
+            <input type="checkbox" name="line" value="Z">Z</input>
+            <input type="checkbox" name="line" value="G">G</input>
+            <input type="checkbox" name="line" value="L">L</input>
+            <input type="checkbox" name="line" value="GS">S (42nd Street)</input>
+            <input type="checkbox" name="line" value="FS">S (Franklin)</input>
+            <input type="checkbox" name="line" value="H">S (Rockaway)</input>
+            <input type="checkbox" name="line" value="SI">SI</input>
+          </form>
+          <input type="checkbox" onClick="setAll(this)"> Toggle All</input>
+          <p>Start Time:</p>
+          <select name="starthour" id="starthour">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20</option>
+              <option value="21">21</option>
+              <option value="22">22</option>
+              <option value="23">23</option>
+          </select> 
+          <select name="startminute" id="startminute">
+              <option value="0">00</option>
+              <option value="5">05</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+              <option value="35">35</option>
+              <option value="40">40</option>
+              <option value="45">45</option>
+              <option value="50">50</option>
+              <option value="55">55</option>
+          </select>
+        <p>End Time:</p>
+        <select name="endhour" id="endhour">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+        </select> 
+        <select name="endminute" id="endminute">
+            <option value="0">00</option>
+            <option value="5">05</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="25">25</option>
+            <option value="30">30</option>
+            <option value="35">35</option>
+            <option value="40">40</option>
+            <option value="45">45</option>
+            <option value="50">50</option>
+            <option value="55">55</option>
+        </select> 
+        <br><br>
+        <button onclick="query()">Query</button>
+        <br><br>
+        <div id="display"></div>
+    </body>
+</html>
