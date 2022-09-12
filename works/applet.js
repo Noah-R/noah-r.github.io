@@ -27896,7 +27896,7 @@ starthour = parseInt(document.getElementById("starthour").value)
 startminute = parseInt(document.getElementById("startminute").value)
 endhour = parseInt(document.getElementById("endhour").value)
 endminute = parseInt(document.getElementById("endminute").value)
-starttime = 1657771241 + starthour*3600 + startminute*60;
+starttime = 1657771240 + starthour*3600 + startminute*60;
 endtime = 1657771241 + endhour*3600 + endminute*60;
 
 radios = document.forms['lines'].elements['line'];
@@ -27907,7 +27907,7 @@ for(var i = 0; i<radios.length; i+=1){
 }
 
 for(var i = 0; i<data.length; i+=1){
-  if(data[i]["time"]>=starttime-1 && data[i]["time"]<=endtime+1){
+  if(data[i]["time"]>=starttime && data[i]["time"]<=endtime){
     for(var j = 0; j<lines.length; j+=1){
       if(data[i]["route"].indexOf(lines[j])>-1){
         newdata.push(data[i]);
