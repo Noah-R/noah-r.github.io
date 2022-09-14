@@ -700,7 +700,7 @@ input, select, textarea {
 			width: 100%;
 		}
 
-			.image.main img {
+			.image.main img:not(.clickHere){/*changed: added :not(.clickHere)*/
 				width: 100%;
 			}
 
@@ -1665,4 +1665,17 @@ input, select, textarea {
 .easteregg{
 	text-decoration: none;
 	border:0;
+}
+
+.dimOnHover:hover {
+	filter: brightness(50%);
+}
+
+.clickHere{
+	position: absolute;
+	height: 60px;
+	width: 195px;
+    left: 50%;
+    top: 50%;
+	transform: translate(-50%,-50%);
 }
