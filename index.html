@@ -59,6 +59,10 @@
 							<article id="projects">	
 								<h2 class="major">Projects</h2>
 								<div class="project">
+									<h3><a href="#candidatetracking">Candidate Tracking</a></h3>
+									<p>A data warehouse for tracking US Senate candidates</p><br>
+								</div>
+								<div class="project">
 									<h3><a href="#alertarchiver">MTA Alert Archiver</a></h3>
 									<p>A cloud ETL pipeline for MTA service alerts</p><br>
 								</div>
@@ -87,6 +91,22 @@
 									<h3><a href="#website">Personal Website</a></h3>
 									<p>This very website</p><br>
 								</div>
+							</article>
+
+							<article id="candidatetracking">
+								<h2 class="major">Candidate Tracking</h2>
+								<span class="image main"><img src="images/ctschema.png" alt=""></span>
+								<p>
+								Candidate Tracking is a data warehouse which collects and processes information about candidates for US Senate, including regulatory filings, affiliations with political action committees, and mentions in news articles. The warehouse runs on AWS Redshift, and the data is collected from the <a href="https://api.open.fec.gov/developers/">OpenFEC</a> and <a href="newsdata.io/">Newsdata.io</a> API's, using AWS Lambda and S3.
+								<br><br>
+								<a href="works/newsmentions.csv">Here</a> is a breakdown of how many times each tracked candidate was mentioned in a popular news article, for each day since October 9th, 2022.
+								</p>
+								<ul class="icons">
+									<li><a href="https://github.com/Noah-R/Candidate-Tracking/" class="icon brands fa-github"></a></li>Source code on GitHub
+									<br><br>
+									<li><a href="#projects" class="icon solid fa-arrow-left"></a></li>Other Projects
+									<li></li>
+								</ul>
 							</article>
 
 							<article id="stockevaluator">
@@ -145,7 +165,7 @@
 										</a>
 									</div>
 								</span>
-								<p>MTA Alert Archiver is a data pipeline which archives service alerts from the MTA's real-time API. It runs entirely on Amazon Web Services, using CloudWatch Events to run a Lambda function every five minutes, which fetches and process alerts, then inserts them into a MySQL database running on Relational Database Service.
+								<p>MTA Alert Archiver is an ETL pipeline which archives service alerts from the MTA's real-time API. It runs entirely on Amazon Web Services, using CloudWatch Events to run a Lambda function every five minutes, which fetches and process alerts, then inserts them into a MySQL database running on Relational Database Service.
 								<br><br>
 								I also created an interactive data viewer, strictly for demonstrative purposes. Click the image above to view archived service alerts from July 15th, 2022.
 								<br>
