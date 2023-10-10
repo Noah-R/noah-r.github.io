@@ -6,11 +6,11 @@
         </title>
     </head>
     <body>
-        <style contenteditable style="display:block;white-space:pre;">
+        <style id="playground" contenteditable style="display:block;white-space:pre-wrap;">
             * {
                 transition: all 0.2s;
             }
-            
+
             html {
                 background: #000000;
                 color: #ffffff;
@@ -18,5 +18,14 @@
                 font-size: 24px;
             }
         </style>
+        <script>
+            document.getElementById('playground').addEventListener("keydown", event => {
+                if(event.which == 13) {
+                    event.stopPropagation();
+                    event.preventDefault();
+                    document.execCommand('insertHTML', false, '<br>            ');
+                }
+                });
+        </script>
     </body>
 </html>
