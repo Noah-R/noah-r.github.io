@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Number Generator</title>
+  <style>
+    body { display: flex; justify-content: center; height: 100vh; font-size: 500px; font-family: sans-serif; font-weight: bold;}
+  </style>
+</head>
+<body>
+  <div id="number"></div>
+
+  <script>
+    const intervalSeconds = 5;
+    const numberEl = document.getElementById("number");
+
+    function updateNumber() {
+      numberEl.textContent = Math.floor(Math.random() * 100);
+    }
+
+    updateNumber();
+    setInterval(updateNumber, intervalSeconds * 1000);
+  </script>
+</body>
+</html>
