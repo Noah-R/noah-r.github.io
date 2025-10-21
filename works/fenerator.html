@@ -41,6 +41,8 @@
             epf6 = En Passant is legal on f6(Black has just played f5)<br>
             #6 = Move number 6<br>
             30/ = 30 half-moves made since last pawn move or piece capture<br>
+            start = Begin with the starting position, rather than an empty board<br>
+            xb1 = No piece on b1<br>
         </p>
         <script>
             function copy() {
@@ -75,6 +77,22 @@
 
                 for(let i = 0; i < tokens.length; i++){
                     token = tokens[i];
+                    if("start" in token){
+                        board = {
+                        8: ["r", "n", "b", "q", "k", "b", "n", "r"],
+                        7: ["p", "p", "p", "p", "p", "p", "p", "p"],
+                        6: ["", "", "", "", "", "", "", ""],
+                        5: ["", "", "", "", "", "", "", ""],
+                        4: ["", "", "", "", "", "", "", ""],
+                        3: ["", "", "", "", "", "", "", ""],
+                        2: ["P", "P", "P", "P", "P", "P", "P", "P"],
+                        1: ["R", "N", "B", "Q", "K", "B", "N", "R"]}
+                        toPlay = "w";
+                        castles = {"K": "K", "Q": "Q", "k": "k", "q": "q"};
+                        enPassant = "-";
+                        halfMoves = 0;
+                        fullMoves = 1;
+                    }
                     if("piece" in token){
                         board[token["rank"]][files[token["file"]]] = token["piece"];
                     }
@@ -140,6 +158,10 @@
                 return fen;
             }
             function readToken(token){
+                if(token.toLowerCase() == "start"){
+                    return {"description": "Starting position", "start": true};
+                }
+
                 if(["wtm", "wtp"].includes(token.toLowerCase())){
                     return {"description": "White to Play", "toPlay": "w"};
                 }
@@ -210,7 +232,8 @@
                     "B": "White Bishop",
                     "R": "White Rook",
                     "Q": "White Queen",
-                    "K": "White King"
+                    "K": "White King",
+                    "": "No piece"
                     };
                 piece = token.substring(0, token.length-2);
                 square = token.substring(token.length-2);
@@ -227,6 +250,9 @@
                     else if(piece[0].toUpperCase() == "B"){
                         piece = piece[1].toLowerCase();
                     }
+                }
+                if(piece.toLowerCase() == "x"){
+                    piece = "";
                 }
                 return {"description": pieceNames[piece]+" on "+square, "piece": piece, "file": square[0], "rank": parseInt(square[1])};
                 
