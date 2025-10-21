@@ -1,0 +1,231 @@
+<html>
+    <head>
+        <title>FENerator</title>
+        <style>
+            body {
+                background-color: #121212;
+                color: #ffffff;
+                font-family: sans-serif;
+            }
+
+            input {
+                background-color: #1e1e1e;
+                color: #ffffff;
+                border: 1px solid #333;
+                padding: 8px;
+                border-radius: 4px;
+            }
+
+            p {
+                color: #ddd;
+            }
+        </style>
+    </head>
+    <body>
+        <input id="input" type="text">
+        <p id="output"></p>
+        <script>
+            function generateFEN(tokens){
+                files = {
+                    "a": 0,
+                    "b": 1,
+                    "c": 2,
+                    "d": 3,
+                    "e": 4,
+                    "f": 5,
+                    "g": 6,
+                    "h": 7,
+                }
+                board = {
+                8: ["", "", "", "", "", "", "", ""],
+                7: ["", "", "", "", "", "", "", ""],
+                6: ["", "", "", "", "", "", "", ""],
+                5: ["", "", "", "", "", "", "", ""],
+                4: ["", "", "", "", "", "", "", ""],
+                3: ["", "", "", "", "", "", "", ""],
+                2: ["", "", "", "", "", "", "", ""],
+                1: ["", "", "", "", "", "", "", ""]}
+                toPlay = "w";
+                castles = {"K": "", "Q": "", "k": "", "q": ""};
+                enPassant = "-";
+                halfMoves = 0;
+                fullMoves = 1;
+
+                for(let i = 0; i < tokens.length; i++){
+                    token = tokens[i];
+                    if("piece" in token){
+                        board[token["rank"]][files[token["file"]]] = token["piece"];
+                    }
+                    else if("toPlay" in token){
+                        toPlay = token["toPlay"];
+                    }
+                    else if("castle" in token){
+                        if(token["canCastle"]){
+                            castles[token["castle"]] = token["castle"];
+                        }
+                        else{
+                            castles[token["castle"]] = "";
+                        }
+                    }
+                    else if("enPassant" in token){
+                        enPassant = token["enPassant"];
+
+                    }
+                    else if("halfMoves" in token){
+                        halfMoves = token["halfMoves"];
+                    }
+                    else if("fullMoves" in token){
+                        fullMoves = token["fullMoves"];
+                    }
+                }
+
+                fen = "";
+
+                for(let i=8; i>0; i--){
+                    emptySquares=0;
+                    for(let j=0; j<8; j++){
+                        if(board[i][j] == ""){
+                            emptySquares +=1;
+                        }
+                        else{
+                            if(emptySquares > 0){
+                                fen += emptySquares;
+                                emptySquares = 0;
+                            }
+                            fen += board[i][j]
+                        }
+                    }
+                    if(emptySquares > 0){
+                        fen += emptySquares;
+                    }
+                    if(i>1){
+                        fen += "/";
+                    }
+                }
+
+                fen += " "+toPlay;
+
+                castles = castles["K"]+castles["Q"]+castles["k"]+castles["q"];
+                if (castles == ""){
+                    castles = "-";
+                }
+                fen += " "+castles;
+
+                fen += " "+enPassant;
+                fen += " "+halfMoves;
+                fen += " "+fullMoves;
+
+                return fen;
+            }
+            function readToken(token){
+                if(["wtm", "wtp"].includes(token.toLowerCase())){
+                    return {"description": "White to Play", "toPlay": "w"};
+                }
+
+                if(["btm", "btp"].includes(token.toLowerCase())){
+                    return {"description": "Black to Play", "toPlay": "b"};
+                }
+
+                if(["k", "q"].includes(token[token.length-1].toLowerCase())){
+                    result = "can castle";
+                    canCastle = true;
+                    castle = "K";
+                    if(token[0].toLowerCase() == "x"){
+                        result = "cannot castle";
+                        canCastle = false;
+                        token = token.substring(1);
+                    }
+                    if(token[token.length-1] == "K"){
+                        result = "White "+result+" kingside";
+                    }
+                    if(token[token.length-1] == "Q"){
+                        castle = "Q";
+                        result = "White "+result+" queenside";
+                    }
+                    if(token[token.length-1] == "k"){
+                        castle = "k";
+                        result = "Black "+result+" kingside";
+                    }
+                    if(token[token.length-1] == "q"){
+                        castle = "q";
+                        result = "Black "+result+" queenside";
+                    }
+                    if(token[0].toLowerCase() == "w"){
+                        castle = castle.toUpperCase();
+                        result = "White "+result.substring(6);
+                    }
+                    if(token[0].toLowerCase() == "b"){
+                        castle = castle.toLowerCase();
+                        result = "Black "+result.substring(6);
+                    }
+                    return {"description": result, "castle": castle, "canCastle": canCastle};
+                }
+
+                if(token.substring(0, 2).toLowerCase() == "ep"){
+                    return {"description": "En Passant on "+token.substring(2, 4), "enPassant": token.substring(2, 4)};
+                }
+                
+                if(token[token.length-1] == "/"){
+                    moveCount = parseInt(token.substring(0, token.length-1))
+                    return {"description": moveCount+" half moves towards 50 move rule", "halfMoves": moveCount};
+                }
+
+                if(token[0] == "#"){
+                    moveCount = parseInt(token.substring(1))
+                    return {"description": "Move number "+moveCount, "fullMoves": moveCount};
+                }
+
+                //it's a piece
+                const pieceNames = {
+                    "p": "Black Pawn",
+                    "b": "Black Bishop",
+                    "r": "Black Rook",
+                    "q": "Black Queen",
+                    "n": "Black Knight",
+                    "k": "Black King",
+                    "P": "White Pawn",
+                    "N": "White Knight",
+                    "B": "White Bishop",
+                    "R": "White Rook",
+                    "Q": "White Queen",
+                    "K": "White King"
+                    };
+                piece = token.substring(0, token.length-2);
+                square = token.substring(token.length-2);
+                if(piece.length == 0){
+                    piece = "P";
+                    if(parseInt(square[1]) > 4){
+                        piece = "p";
+                    }
+                }
+                if(piece.length == 2){
+                    if(piece[0].toUpperCase() == "W"){
+                        piece = piece[1].toUpperCase();
+                    }
+                    else if(piece[0].toUpperCase() == "B"){
+                        piece = piece[1].toLowerCase();
+                    }
+                }
+                return {"description": pieceNames[piece]+" on "+square, "piece": piece, "file": square[0], "rank": parseInt(square[1])};
+                
+            }
+
+            function parse(input){
+                const tokens = input.split(" ");
+                let parameters = [];
+                let output = ""
+                for(let i = 0; i < tokens.length; i++){
+                    token = readToken(tokens[i])
+                    output += token["description"]+"<br>";
+                    parameters.push(token);
+                }
+                output += "<br><br><br>" + generateFEN(parameters);
+                return output;
+            }
+
+            document.getElementById("input").addEventListener("input", function() {
+                document.getElementById("output").innerHTML = parse(this.value);
+            });
+        </script>
+    </body>
+</html>
