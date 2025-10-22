@@ -22,11 +22,24 @@
                 color: #ddd;
             }
         </style>
+
+        <link rel="stylesheet"
+            href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css"
+            integrity="sha384-q94+BZtLrkL1/ohfjR8c6L+A6qzNH9R2hBLwyoAfu3i/WCvQjzL2RQJ3uNHDISdU"
+            crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2"
+            crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"
+            integrity="sha384-8Vi8VHwn3vjQ9eUHUxex3JSN/NFqUg3QbPyX8kWyb93+8AC/pPWTzj+nHtbC5bxD"
+            crossorigin="anonymous"></script>
+
     </head>
     <body>
         <input id="input" type="text" value="">
-        <div id="output"><br><br><br><h1 id="copy">8/8/8/8/8/8/8/8 w - - 0 1</h1></div>    
+        <div id="output"></div>
         <button onclick="copy()">Copy</button>
+        <div id="visualBoard" style="width: 400px"></div>
         <h3>How this works</h3>
         <p>
             Enter any number of instructions, separated by spaces. Later instructions can overwrite previous instructions.<br>
@@ -93,7 +106,7 @@
                         halfMoves = 0;
                         fullMoves = 1;
                     }
-                    if("piece" in token){
+                    else if("piece" in token){
                         board[token["rank"]][files[token["file"]]] = token["piece"];
                     }
                     else if("toPlay" in token){
@@ -109,7 +122,6 @@
                     }
                     else if("enPassant" in token){
                         enPassant = token["enPassant"];
-
                     }
                     else if("halfMoves" in token){
                         halfMoves = token["halfMoves"];
@@ -219,7 +231,6 @@
                     return {"description": "Move number "+moveCount, "fullMoves": moveCount};
                 }
 
-                //it's a piece
                 const pieceNames = {
                     "p": "Black Pawn",
                     "b": "Black Bishop",
@@ -305,7 +316,9 @@
                     output += token["description"]+"<br>";
                     parameters.push(token);
                 }
-                output += "<br><br><br><h1 id=\"copy\">" + generateFEN(parameters)+"</h1>";
+                fen = generateFEN(parameters)
+                output += "<br><br><h1 id=\"copy\">" + fen +"</h1>";
+                var visualBoard = Chessboard('visualBoard', {position: fen});
                 return output;
             }
 
