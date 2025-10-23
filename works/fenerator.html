@@ -44,7 +44,9 @@
         <div class="container">
             <div class="left">
                 <input id="input" type="text" value="">
-                <div id="output"></div>
+                <div id="output">
+                    <br><h1 id="copy">8/8/8/8/8/8/8/8 w - - 0 1</h1>
+                </div>
                 <button onclick="copy()">Copy</button>
                 <h3><u>How this works</u><span onclick="toggleSyntaxGuide()"> 👁</span></h3>
                 <div id="syntaxGuide">
@@ -69,6 +71,7 @@
             </div>
         </div>
         <script>
+            var visualBoard = Chessboard('visualBoard', {position: "8/8/8/8/8/8/8/8 w - - 0 1"});
             function copy() {
                 const text = document.getElementById("copy").innerText;
                 navigator.clipboard.writeText(text);
@@ -333,7 +336,7 @@
                 }
                 fen = generateFEN(parameters)
                 output += "<br><h1 id=\"copy\">" + fen +"</h1>";
-                var visualBoard = Chessboard('visualBoard', {position: fen});
+                visualBoard = Chessboard('visualBoard', {position: fen});
                 return output;
             }
 
