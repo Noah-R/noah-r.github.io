@@ -21,6 +21,15 @@
             div {
                 color: #ddd;
             }
+
+            span {
+                cursor: pointer;
+            }
+
+            .container {
+                display: flex;
+                justify-content: space-between;
+            }
         </style>
 
         <link rel="stylesheet"
@@ -36,31 +45,41 @@
 
     </head>
     <body>
-        <input id="input" type="text" value="">
-        <div id="output"></div>
-        <button onclick="copy()">Copy</button>
-        <div id="visualBoard" style="width: 400px"></div>
-        <h3>How this works</h3>
-        <p>
-            Enter any number of instructions, separated by spaces. Later instructions can overwrite previous instructions.<br>
-            Once you're done, click copy, and enter the FEN code into the <a href="https://lichess.org/analysis/">lichess analysis board</a>, or your computer program of choice.<br>
-            <br>
-            Bf4 = White bishop on f4<br>
-            kb8 = Black king on b8<br>
-            P(e4 d4 c4) = White pawns on e4, d4, and c4<br>
-            btp = Black to Play<br>
-            K = White can castle kingside<br>
-            xq = Black cannot castle queenside<br>
-            epf6 = En Passant is legal on f6(Black has just played f5)<br>
-            #6 = Move number 6<br>
-            30/ = 30 half-moves made since last pawn move or piece capture<br>
-            start = Begin with the starting position, rather than an empty board<br>
-            xb1 = No piece on b1<br>
-        </p>
+        <div class="container">
+            <div class="left">
+                <input id="input" type="text" value="">
+                <div id="output"></div>
+                <button onclick="copy()">Copy</button>
+                <h3><u>How this works</u><span onclick="toggleSyntaxGuide()"> 👁</span></h3>
+                <div id="syntaxGuide">
+                Enter any number of instructions, separated by spaces. Later instructions can overwrite previous instructions.<br>
+                Once you're done, click copy, and enter the FEN code into the <a href="https://lichess.org/analysis/">lichess analysis board</a>, or your computer program of choice.<br>
+                <br>
+                Bf4 = White bishop on f4<br>
+                kb8 = Black king on b8<br>
+                P(e4 d4 c4) = White pawns on e4, d4, and c4<br>
+                btp = Black to Play<br>
+                K = White can castle kingside<br>
+                xq = Black cannot castle queenside<br>
+                epf6 = En Passant is legal on f6(Black has just played f5)<br>
+                #6 = Move number 6<br>
+                30/ = 30 half-moves made since last pawn move or piece capture<br>
+                start = Begin with the starting position, rather than an empty board<br>
+                xb1 = No piece on b1<br>
+                </div>
+            </div>
+            <div class="right">
+                <div id="visualBoard" style="width: 400px"></div>
+            </div>
+        </div>
         <script>
             function copy() {
                 const text = document.getElementById("copy").innerText;
                 navigator.clipboard.writeText(text);
+            }
+            function toggleSyntaxGuide() {
+                const element = document.getElementById("syntaxGuide");
+                element.style.display = element.style.display === 'none' ? 'block' : 'none';
             }
             function generateFEN(tokens){
                 files = {
@@ -317,7 +336,7 @@
                     parameters.push(token);
                 }
                 fen = generateFEN(parameters)
-                output += "<br><br><h1 id=\"copy\">" + fen +"</h1>";
+                output += "<br><h1 id=\"copy\">" + fen +"</h1>";
                 var visualBoard = Chessboard('visualBoard', {position: fen});
                 return output;
             }
